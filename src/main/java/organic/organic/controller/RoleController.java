@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.user.RoleService;
-import organic.organic.dao.user.ServiceResult;
+import organic.organic.dao.ServiceResult;
 import organic.organic.model.user.Role;
 
 @Controller

@@ -1,4 +1,4 @@
-package organic.organic.dao.user;
+package organic.organic.dao;
 
 public class ServiceResult {
     private Status status = Status.SUCCESS;

@@ -1,54 +1,55 @@
-package organic.organic.dao.user;
+package organic.organic.dao.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import organic.organic.dao.ServiceResult;
-import organic.organic.model.user.User;
+import organic.organic.model.product.Product;
+
 
 @Service
-public class UserService {
+public class ProductService {
     @Autowired
-    UserRepository userReponsitory;
+    ProductRepository productRepository;
 
     public ServiceResult findAll(){
         ServiceResult result = new ServiceResult();
-        result.setData(userReponsitory.findAll());
+        result.setData(productRepository.findAll());
         return result;
     }
 
     public ServiceResult findById(int id) {
         ServiceResult result = new ServiceResult();
-        User user = userReponsitory.findById(id).orElse(null);
-        result.setData(user);
+        Product product = productRepository.findById(id).orElse(null);
+        result.setData(product);
         return result;
     }
 
-    public ServiceResult create(User user) {
+    public ServiceResult create(Product product) {
         ServiceResult result = new ServiceResult();
-        result.setData(userReponsitory.save(user));
+        result.setData(productRepository.save(product));
         return result;
     }
 
-    public ServiceResult update(User user) {
+    public ServiceResult update(Product product) {
         ServiceResult result = new ServiceResult();
-        if (!userReponsitory.findById(user.getId()).isPresent()) {
+        if (!productRepository.findById(product.getId()).isPresent()) {
             result.setStatus(ServiceResult.Status.FAILED);
             result.setMessage("User Not Found");
         } else {
-            result.setData(userReponsitory.save(user));
+            result.setData(productRepository.save(product));
         }
         return result;
     }
 
     public ServiceResult delete(int id) {
         ServiceResult result = new ServiceResult();
-        User user = userReponsitory.findById(id).orElse(null);
-        if (user == null) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product == null) {
             result.setStatus(ServiceResult.Status.FAILED);
             result.setMessage("User Not Found");
         } else {
-            userReponsitory.deleteById(id);
+        	productRepository.deleteById(id);
             result.setMessage("success");
         }
         return result;

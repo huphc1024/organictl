@@ -2,6 +2,8 @@ package organic.organic.dao.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import organic.organic.dao.ServiceResult;
 import organic.organic.model.user.Role;
 
 @Service
