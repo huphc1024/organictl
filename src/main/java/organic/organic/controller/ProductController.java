@@ -16,7 +16,7 @@ public class ProductController {
     private ProductService productService;
 
     /* ---------------- GET ALL USER ------------------------ */
-    @GetMapping("/product")
+    @GetMapping("/products")
     public ResponseEntity<ServiceResult> findAllCustomer() {
         return new ResponseEntity<ServiceResult>(productService.findAll(), HttpStatus.OK);
     }
