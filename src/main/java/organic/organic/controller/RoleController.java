@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.user.RoleService;
 import organic.organic.dao.ServiceResult;
 import organic.organic.model.user.Role;
-
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Controller
 @RequestMapping("/api")
 public class RoleController {

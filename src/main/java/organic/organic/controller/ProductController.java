@@ -9,6 +9,8 @@ import organic.organic.dao.ServiceResult;
 import organic.organic.dao.product.ProductService;
 import organic.organic.model.product.Product;
 
+
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Controller
 @RequestMapping("/api")
 public class ProductController {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.ServiceResult;
 import organic.organic.dao.user.UserService;
 import organic.organic.model.user.User;
-
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Controller
 @RequestMapping("/api")
 public class UserController {
