@@ -17,33 +17,33 @@ public class ProductController {
 
 	/* ---------------- GET ALL PRODUCT ------------------------ */
 	@GetMapping("/products")
-	public List<Product> findAllProduct() {
+	public @ResponseBody List<Product> findAllProduct() {
 		return productService.findAll();
 	}
 
 	/* ---------------- GET PRODUCT BY ID ------------------------ */
 	@GetMapping("/product/{id}")
-	public Product findById(@PathVariable int id) {
+	public @ResponseBody Product findById(@PathVariable int id) {
 		return productService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW PRODUCT ------------------------ */
 	@PostMapping("/product")
-	public String create(@RequestBody Product product) {
+	public @ResponseBody String create(@RequestBody Product product) {
 
 		return productService.create(product);
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
 	@PutMapping("/product/{id}")
-	public String update(@RequestBody Product product, @PathVariable int id) {
+	public @ResponseBody String update(@RequestBody Product product, @PathVariable int id) {
 		product.setId(id);
 		return productService.update(product);
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
 	@DeleteMapping("/product/{id}")
-	public String delete(@PathVariable int id) {
+	public @ResponseBody String delete(@PathVariable int id) {
 		return productService.delete(id);
 	}
 }

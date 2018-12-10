@@ -17,31 +17,31 @@ public class UserController {
 
 	/* ---------------- GET ALL USER ------------------------ */
 	@GetMapping("/users")
-	public List<User> findAllCustomer() {
+	public @ResponseBody List<User> findAllCustomer() {
 		return userService.findAll();
 	}
 
 	/* ---------------- GET USER BY ID ------------------------ */
 	@GetMapping("/user/{id}")
-	public User findById(@PathVariable int id) {
+	public @ResponseBody User findById(@PathVariable int id) {
 		return userService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW USER ------------------------ */
 	@PostMapping("/user")
-	public String create(@RequestBody User user) {
+	public @ResponseBody String create(@RequestBody User user) {
 		return userService.create(user);
 	}
 
 	/* ---------------- UPDATE USER ------------------------ */
 	@PutMapping("/user/{id}")
-	public String update(@RequestBody User user, @PathVariable int id) {
+	public @ResponseBody String update(@RequestBody User user, @PathVariable int id) {
 		user.setId(id);
 		return userService.update(user);
 	}
 
 	@DeleteMapping("/user/{id}")
-	public String delete(@PathVariable int id) {
+	public @ResponseBody String delete(@PathVariable int id) {
 		return userService.delete(id);
 	}
 }

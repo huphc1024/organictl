@@ -13,35 +13,35 @@ import organic.organic.model.user.Role;
 @RequestMapping("/api")
 public class RoleController {
 	@Autowired
-	private RoleService userService;
+	private  RoleService userService;
 
 	/* ---------------- GET ALL ROLE ------------------------ */
 	@GetMapping("/roles")
-	public List<Role> findAllRole() {
+	public @ResponseBody List<Role> findAllRole() {
 		return userService.findAll();
 	}
 
 	/* ---------------- GET ROLE BY ID ------------------------ */
 	@GetMapping("/role/{id}")
-	public Role findById(@PathVariable int id) {
+	public @ResponseBody Role findById(@PathVariable int id) {
 		return userService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW ROLE ------------------------ */
 	@PostMapping("/role")
-	public String create(@RequestBody Role userRole) {
+	public @ResponseBody String create(@RequestBody Role userRole) {
 		return userService.create(userRole);
 	}
 
 	/* ---------------- UPDATE ROLE ------------------------ */
 	@PutMapping("/role/{id}")
-	public String update(@RequestBody Role userRole, @PathVariable int id) {
+	public @ResponseBody String update(@RequestBody Role userRole, @PathVariable int id) {
 		userRole.setId(id);
 		return userService.update(userRole);
 	}
 
 	@DeleteMapping("/role/{id}")
-	public String delete(@PathVariable int id) {
+	public @ResponseBody String delete(@PathVariable int id) {
 		return userService.delete(id);
 	}
 }
