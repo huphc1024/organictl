@@ -5,52 +5,56 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import organic.organic.dao.ServiceResult;
 import organic.organic.model.product.Shop;
 
 @Service
 public class ShopService {
-    @Autowired
-    ShopRepository shopRepository;
+	@Autowired
+	ShopRepository shopRepository;
 
-    public List<Shop> findAll(){
-        return (List<Shop>) shopRepository.findAll();
-    }
+	public List<Shop> findAll() {
+		return (List<Shop>) shopRepository.findAll();
+	}
 
-    public ServiceResult findById(int id) {
-        ServiceResult result = new ServiceResult();
-        Shop shop  = shopRepository.findById(id).orElse(null);
-        result.setData(shop);
-        return result;
-    }
+	public Shop findById(int id) {
+		Shop shop = shopRepository.findById(id).orElse(null);
+		return shop;
+	}
 
-    public ServiceResult create(Shop shop) {
-        ServiceResult result = new ServiceResult();
-        result.setData(shopRepository.save(shop));
-        return result;
-    }
+	public String create(Shop shop) {
+		String mess = "";
+		try {
+			shopRepository.save(shop);
 
-    public ServiceResult update(Shop shop) {
-        ServiceResult result = new ServiceResult();
-        if (!shopRepository.findById(shop.getId()).isPresent()) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("Shop Not Found");
-        } else {
-            result.setData(shopRepository.save(shop));
-        }
-        return result;
-    }
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 
-    public ServiceResult delete(int id) {
-        ServiceResult result = new ServiceResult();
-        Shop shop = shopRepository.findById(id).orElse(null);
-        if (shop == null) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("Shop Not Found");
-        } else {
-        	shopRepository.deleteById(id);
-            result.setMessage("success");
-        }
-        return result;
-    }
+	public String update(Shop shop) {
+		String mess = "";
+		try {
+			shopRepository.save(shop);
+
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+
+	}
+
+	public String delete(int id) {
+		String mess = "";
+		try {
+			shopRepository.deleteById(id);
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+
+	}
 }

@@ -1,56 +1,59 @@
 package organic.organic.dao.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import organic.organic.dao.ServiceResult;
 import organic.organic.model.user.User;
 
 @Service
 public class UserService {
-    @Autowired
-    UserRepository userReponsitory;
+	@Autowired
+	UserRepository userReponsitory;
 
-    public ServiceResult findAll(){
-        ServiceResult result = new ServiceResult();
-        result.setData(userReponsitory.findAll());
-        return result;
-    }
+	public List<User> findAll() {
+		return (List<User>) userReponsitory.findAll();
+	}
 
-    public ServiceResult findById(int id) {
-        ServiceResult result = new ServiceResult();
-        User user = userReponsitory.findById(id).orElse(null);
-        result.setData(user);
-        return result;
-    }
+	public User findById(int id) {
+		User user = userReponsitory.findById(id).orElse(null);
+		return user;
+	}
 
-    public ServiceResult create(User user) {
-        ServiceResult result = new ServiceResult();
-        result.setData(userReponsitory.save(user));
-        return result;
-    }
+	public String create(User user) {
+		String mess = "";
+		try {
+			userReponsitory.save(user);
 
-    public ServiceResult update(User user) {
-        ServiceResult result = new ServiceResult();
-        if (!userReponsitory.findById(user.getId()).isPresent()) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("User Not Found");
-        } else {
-            result.setData(userReponsitory.save(user));
-        }
-        return result;
-    }
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 
-    public ServiceResult delete(int id) {
-        ServiceResult result = new ServiceResult();
-        User user = userReponsitory.findById(id).orElse(null);
-        if (user == null) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("User Not Found");
-        } else {
-            userReponsitory.deleteById(id);
-            result.setMessage("success");
-        }
-        return result;
-    }
+	public String update(User user) {
+
+		String mess = "";
+		try {
+			userReponsitory.save(user);
+
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
+
+	public String delete(int id) {
+		String mess = "";
+		try {
+			userReponsitory.deleteById(id);
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 }

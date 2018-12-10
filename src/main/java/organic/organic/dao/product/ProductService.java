@@ -5,53 +5,54 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import organic.organic.dao.ServiceResult;
 import organic.organic.model.product.Product;
-
 
 @Service
 public class ProductService {
-    @Autowired
-    ProductRepository productRepository;
+	@Autowired
+	ProductRepository productRepository;
 
-    public List<Product> findAll(){
-        return (List<Product>) productRepository.findAll();
-    }
+	public List<Product> findAll() {
+		return (List<Product>) productRepository.findAll();
+	}
 
-    public ServiceResult findById(int id) {
-        ServiceResult result = new ServiceResult();
-        Product product = productRepository.findById(id).orElse(null);
-        result.setData(product);
-        return result;
-    }
+	public Product findById(int id) {
+		Product product = productRepository.findById(id).orElse(null);
+		return product;
+	}
 
-    public ServiceResult create(Product product) {
-        ServiceResult result = new ServiceResult();
-        result.setData(productRepository.save(product));
-        return result;
-    }
+	public String create(Product product) {
+		String mess = "";
+		try {
+			productRepository.save(product);
 
-    public ServiceResult update(Product product) {
-        ServiceResult result = new ServiceResult();
-        if (!productRepository.findById(product.getId()).isPresent()) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("User Not Found");
-        } else {
-            result.setData(productRepository.save(product));
-        }
-        return result;
-    }
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 
-    public ServiceResult delete(int id) {
-        ServiceResult result = new ServiceResult();
-        Product product = productRepository.findById(id).orElse(null);
-        if (product == null) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("User Not Found");
-        } else {
-        	productRepository.deleteById(id);
-            result.setMessage("success");
-        }
-        return result;
-    }
+	public String update(Product product) {
+		String mess = "";
+		try {
+			productRepository.save(product);
+
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
+
+	public String delete(int id) {
+		String mess = "";
+		try {
+			productRepository.deleteById(id);
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 }

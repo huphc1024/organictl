@@ -1,45 +1,47 @@
 package organic.organic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.user.RoleService;
-import organic.organic.dao.ServiceResult;
 import organic.organic.model.user.Role;
+
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Controller
 @RequestMapping("/api")
 public class RoleController {
-        @Autowired
-        private RoleService userService;
+	@Autowired
+	private RoleService userService;
 
-        /* ---------------- GET ALL ROLE ------------------------ */
-        @GetMapping("/roles")
-        public ResponseEntity<ServiceResult> findAllRole() {
-            return new ResponseEntity<ServiceResult>(userService.findAll(), HttpStatus.OK);
-        }
-        /* ---------------- GET ROLE BY ID ------------------------ */
-        @GetMapping("/role/{id}")
-        public ResponseEntity<ServiceResult> findById(@PathVariable int id) {
-            return new ResponseEntity<ServiceResult>(userService.findById(id), HttpStatus.OK);
-        }
-        /* ---------------- CREATE NEW ROLE ------------------------ */
-        @PostMapping("/role")
-        public ResponseEntity<ServiceResult> create(@RequestBody Role userRole) {
-            return new ResponseEntity<ServiceResult>(userService.create(userRole), HttpStatus.OK);
-        }
+	/* ---------------- GET ALL ROLE ------------------------ */
+	@GetMapping("/roles")
+	public List<Role> findAllRole() {
+		return userService.findAll();
+	}
 
-        /* ---------------- UPDATE ROLE ------------------------ */
-        @PutMapping("/role/{id}")
-        public ResponseEntity<ServiceResult> update(@RequestBody Role userRole, @PathVariable int id) {
-            userRole.setId(id);
-            return new ResponseEntity<ServiceResult>(userService.update(userRole), HttpStatus.OK);
-        }
-        @DeleteMapping("/role/{id}")
-        public ResponseEntity<ServiceResult> delete(@PathVariable int id) {
-            return new ResponseEntity<ServiceResult>(userService.delete(id), HttpStatus.OK);
-        }
+	/* ---------------- GET ROLE BY ID ------------------------ */
+	@GetMapping("/role/{id}")
+	public Role findById(@PathVariable int id) {
+		return userService.findById(id);
+	}
+
+	/* ---------------- CREATE NEW ROLE ------------------------ */
+	@PostMapping("/role")
+	public String create(@RequestBody Role userRole) {
+		return userService.create(userRole);
+	}
+
+	/* ---------------- UPDATE ROLE ------------------------ */
+	@PutMapping("/role/{id}")
+	public String update(@RequestBody Role userRole, @PathVariable int id) {
+		userRole.setId(id);
+		return userService.update(userRole);
+	}
+
+	@DeleteMapping("/role/{id}")
+	public String delete(@PathVariable int id) {
+		return userService.delete(id);
+	}
 }
-

@@ -1,56 +1,60 @@
 package organic.organic.dao.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import organic.organic.dao.ServiceResult;
+import organic.organic.model.product.Product;
 import organic.organic.model.user.Role;
 
 @Service
 public class RoleService {
-    @Autowired
-    RoleRepository roleRepository;
+	@Autowired
+	RoleRepository roleRepository;
 
-    public ServiceResult findAll(){
-        ServiceResult result = new ServiceResult();
-        result.setData(roleRepository.findAll());
-        return result;
-    }
+	public List<Role> findAll() {
 
-    public ServiceResult findById(int id) {
-        ServiceResult result = new ServiceResult();
-        Role userRole = roleRepository.findById(id).orElse(null);
-        result.setData(userRole);
-        return result;
-    }
+		return (List<Role>) roleRepository.findAll();
+	}
 
-    public ServiceResult create(Role userRole) {
-        ServiceResult result = new ServiceResult();
-        result.setData(roleRepository.save(userRole));
-        return result;
-    }
+	public Role findById(int id) {
+		Role role = roleRepository.findById(id).orElse(null);
+		return role;
+	}
 
-    public ServiceResult update(Role userRole) {
-        ServiceResult result = new ServiceResult();
-        if (!roleRepository.findById(userRole.getId()).isPresent()) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("UserRole Not Found");
-        } else {
-            result.setData(roleRepository.save(userRole));
-        }
-        return result;
-    }
+	public String create(Role role) {
+		String mess = "";
+		try {
+			roleRepository.save(role);
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 
-    public ServiceResult delete(int id) {
-        ServiceResult result = new ServiceResult();
-        Role userRole = roleRepository.findById(id).orElse(null);
-        if (userRole == null) {
-            result.setStatus(ServiceResult.Status.FAILED);
-            result.setMessage("UserRole Not Found");
-        } else {
-            roleRepository.deleteById(id);
-            result.setMessage("success");
-        }
-        return result;
-    }
+	public String update(Role role) {
+		String mess = "";
+		try {
+			roleRepository.save(role);
+
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
+
+	public String delete(int id) {
+		String mess = "";
+		try {
+			roleRepository.deleteById(id);
+			mess = "OK";
+		} catch (Exception e) {
+			mess = "FAIL";
+		}
+		return mess;
+	}
 }
