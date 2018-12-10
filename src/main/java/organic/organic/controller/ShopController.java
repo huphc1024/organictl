@@ -1,5 +1,7 @@
 package organic.organic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.user.RoleService;
 import organic.organic.dao.ServiceResult;
 import organic.organic.dao.product.ShopService;
+import organic.organic.model.product.Product;
 import organic.organic.model.product.Shop;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -19,8 +22,8 @@ public class ShopController {
 
         /* ---------------- GET ALL ROLE ------------------------ */
         @GetMapping("/shops")
-        public ResponseEntity<ServiceResult> findAllShop() {
-            return new ResponseEntity<ServiceResult>(shopService.findAll(), HttpStatus.OK);
+        public @ResponseBody java.util.List<Shop> findAllShop() {
+            return (List<Shop>) shopService.findAll();
         }
         /* ---------------- GET ROLE BY ID ------------------------ */
         @GetMapping("/shop/{id}")
