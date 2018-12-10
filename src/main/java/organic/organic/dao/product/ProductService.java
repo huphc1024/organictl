@@ -1,5 +1,7 @@
 package organic.organic.dao.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,8 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public ServiceResult findAll(){
-        ServiceResult result = new ServiceResult();
-        result.setData(productRepository.findAll());
-        return result;
+    public List<Product> findAll(){
+        return (List<Product>) productRepository.findAll();
     }
 
     public ServiceResult findById(int id) {

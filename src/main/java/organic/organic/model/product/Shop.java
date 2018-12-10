@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +20,9 @@ public class Shop {
     private  String name;
     @Column(name = "description")
     private String description;
+    @Lob
     @Column(name = "image")
-    private String image;
+    private byte[] image;
 	public Shop() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -43,13 +45,13 @@ public class Shop {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	public Shop(int id, String name, String description, String image) {
+	public Shop(int id, String name, String description, byte[] image) {
 		super();
 		this.id = id;
 		this.name = name;

@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+
 import organic.organic.dao.ServiceResult;
 import organic.organic.dao.product.ProductService;
 import organic.organic.model.product.Product;
@@ -19,8 +21,8 @@ public class ProductController {
 
     /* ---------------- GET ALL USER ------------------------ */
     @GetMapping("/products")
-    public ResponseEntity<ServiceResult> findAllCustomer() {
-        return new ResponseEntity<ServiceResult>(productService.findAll(), HttpStatus.OK);
+    public @ResponseBody java.util.List<Product> findAllCustomer() {
+        return productService.findAll();
     }
     /* ---------------- GET USER BY ID ------------------------ */
     @GetMapping("/product/{id}")
