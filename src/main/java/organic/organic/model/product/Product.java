@@ -29,9 +29,16 @@ public class Product {
     private String unit;
     @Column(name = "stock")
     private int stock;
+    @Column(name = "rating")
+    private int rating;
+    @Column(name = "buy")
+    private int buy;
+    @Column(name = "tbl_category_id")
+    private int tbl_category_id;
     @Column(name = "sku")
     private String sku;
-	public Product() {
+	
+    public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,7 +46,7 @@ public class Product {
 	 @ManyToMany(fetch = FetchType.LAZY)
 	    @JoinTable(name = "ref_shop_product", joinColumns = @JoinColumn(name = "tbl_product_id", referencedColumnName = "id"),
 	            inverseJoinColumns = @JoinColumn(name = "tbl_shop_id", referencedColumnName = "id"))
-	 
+
 	private List<Shop> shops;
 	  
 	public List<Shop> getShops() {
@@ -48,8 +55,30 @@ public class Product {
 	public void setShops(List<Shop> shops) {
 		this.shops = shops;
 	}
+	
+	
+	public int getTbl_category_id() {
+		return tbl_category_id;
+	}
+	public void setTbl_category_id(int tbl_category_id) {
+		this.tbl_category_id = tbl_category_id;
+	}
 	public int getId() {
 		return id;
+	}
+	
+	
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public int getBuy() {
+		return buy;
+	}
+	public void setBuy(int buy) {
+		this.buy = buy;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -84,17 +113,24 @@ public class Product {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-	
-	public Product(int id, String name, float price, String unit, int stock, String sku) {
+	public Product(int id, String name, float price, String unit, int stock, int rating, int buy, int tbl_category_id,
+			String sku, List<Shop> shops) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.unit = unit;
 		this.stock = stock;
+		this.rating = rating;
+		this.buy = buy;
+		this.tbl_category_id = tbl_category_id;
 		this.sku = sku;
-		
+		this.shops = shops;
 	}
+	
+	
+	
+	
     
     
     
