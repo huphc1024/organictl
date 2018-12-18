@@ -1,8 +1,10 @@
 package organic.organic.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.product.ProductService;
@@ -22,28 +24,65 @@ public class ProductController {
 	}
 
 	/* ---------------- GET PRODUCT BY ID ------------------------ */
-	@GetMapping("/product/{id}")
+	@GetMapping("/products/{id}")
 	public @ResponseBody Product findById(@PathVariable int id) {
 		return productService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW PRODUCT ------------------------ */
-	@PostMapping("/product")
+	@PostMapping("/products")
 	public @ResponseBody String create(@RequestBody Product product) {
 
 		return productService.create(product);
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
-	@PutMapping("/product/{id}")
+	@PutMapping("/products/{id}")
 	public @ResponseBody String update(@RequestBody Product product, @PathVariable int id) {
 		product.setId(id);
 		return productService.update(product);
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
-	@DeleteMapping("/product/{id}")
+	@DeleteMapping("/products/{id}")
 	public @ResponseBody String delete(@PathVariable int id) {
 		return productService.delete(id);
 	}
+
+	@GetMapping("/categories/{id}")
+	public @ResponseBody List<Product> fillAllProductByIdCat(@PathVariable int id) {
+		List<Product> listProduct = new ArrayList<>();
+
+		int parent_id = -1;
+		try {
+			parent_id = productService.fillIdParent(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// get parent_id by id_cat
+		System.out.println(parent_id);
+		if (parent_id == 0) {
+			// gat all
+			listProduct = productService.findAll();
+		} else {
+			// get id_cat thoi
+			if (parent_id == -1) {
+				listProduct = productService.fillAllProductByIdCat(id);
+			} else {
+				List<Integer> listIdCat = productService.fillIdByParentID(parent_id);
+				for (Integer i : listIdCat) {
+					listProduct.addAll(productService.fillAllProductByIdCat(id));
+				}
+			}
+
+		}
+		return listProduct;
+	}
+	/*
+	 * @GetMapping("/categories/{id}") public @ResponseBody List<Product>
+	 * fillCountProductByIdCat(@PathVariable int id) { if(id==0) {
+	 * productService.findAll(); }else { int parent_id =[id]; if() } return
+	 * productService.fillAllProductByIdCat(id); }
+	 */
+
 }

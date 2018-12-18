@@ -22,25 +22,25 @@ public class UserController {
 	}
 
 	/* ---------------- GET USER BY ID ------------------------ */
-	@GetMapping("/user/{id}")
+	@GetMapping("/users/{id}")
 	public @ResponseBody User findById(@PathVariable int id) {
 		return userService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW USER ------------------------ */
-	@PostMapping("/user")
+	@PostMapping("/users")
 	public @ResponseBody String create(@RequestBody User user) {
 		return userService.create(user);
 	}
 
 	/* ---------------- UPDATE USER ------------------------ */
-	@PutMapping("/user/{id}")
+	@PutMapping("/users/{id}")
 	public @ResponseBody String update(@RequestBody User user, @PathVariable int id) {
 		user.setId(id);
 		return userService.update(user);
 	}
 
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/users/{id}")
 	public @ResponseBody String delete(@PathVariable int id) {
 		return userService.delete(id);
 	}

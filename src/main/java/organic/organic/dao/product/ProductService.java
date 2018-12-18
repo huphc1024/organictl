@@ -55,4 +55,23 @@ public class ProductService {
 		}
 		return mess;
 	}
+
+	public List<Product> fillAllProductByIdCat(int id_cat) {
+
+		return productRepository.fillAllProductByIdCat(id_cat);
+
+	}
+
+	public int fillIdParent(int id_cat) {
+
+		return productRepository.fillIdParent(id_cat);
+
+	}
+
+	public List<Integer> fillIdByParentID(int id_cat) {
+
+		return productRepository.fillIdByParentID(id_cat);
+
+	}
+
 }

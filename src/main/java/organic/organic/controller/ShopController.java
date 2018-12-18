@@ -23,25 +23,25 @@ public class ShopController {
 	}
 
 	/* ---------------- GET Shop BY ID ------------------------ */
-	@GetMapping("/shop/{id}")
+	@GetMapping("/shops/{id}")
 	public @ResponseBody Shop findById(@PathVariable int id) {
 		return shopService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW Shop ------------------------ */
-	@PostMapping("/shop")
+	@PostMapping("/shops")
 	public @ResponseBody String create(@RequestBody Shop shop) {
 		return shopService.create(shop);
 	}
 
 	/* ---------------- UPDATE Shop ------------------------ */
-	@PutMapping("/shop/{id}")
+	@PutMapping("/shops/{id}")
 	public @ResponseBody String update(@RequestBody Shop shop, @PathVariable int id) {
 		shop.setId(id);
 		return shopService.update(shop);
 	}
 
-	@DeleteMapping("/shop/{id}")
+	@DeleteMapping("/shops/{id}")
 	public @ResponseBody String delete(@PathVariable int id) {
 		return shopService.delete(id);
 	}

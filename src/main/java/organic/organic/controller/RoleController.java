@@ -22,25 +22,25 @@ public class RoleController {
 	}
 
 	/* ---------------- GET ROLE BY ID ------------------------ */
-	@GetMapping("/role/{id}")
+	@GetMapping("/roles/{id}")
 	public @ResponseBody Role findById(@PathVariable int id) {
 		return userService.findById(id);
 	}
 
 	/* ---------------- CREATE NEW ROLE ------------------------ */
-	@PostMapping("/role")
+	@PostMapping("/roles")
 	public @ResponseBody String create(@RequestBody Role userRole) {
 		return userService.create(userRole);
 	}
 
 	/* ---------------- UPDATE ROLE ------------------------ */
-	@PutMapping("/role/{id}")
+	@PutMapping("/roles/{id}")
 	public @ResponseBody String update(@RequestBody Role userRole, @PathVariable int id) {
 		userRole.setId(id);
 		return userService.update(userRole);
 	}
 
-	@DeleteMapping("/role/{id}")
+	@DeleteMapping("/roles/{id}")
 	public @ResponseBody String delete(@PathVariable int id) {
 		return userService.delete(id);
 	}
