@@ -13,7 +13,7 @@ public class ProductService {
 	ProductRepository productRepository;
 
 	public List<Product> findAll() {
-		return (List<Product>) productRepository.findAll();
+		return (List<Product>) productRepository.fillAllProduct();
 	}
 
 	public Product findById(int id) {

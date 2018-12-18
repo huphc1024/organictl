@@ -10,6 +10,10 @@ import organic.organic.model.product.Product;
 
 public interface ProductRepository  extends CrudRepository<Product, Integer> {
 
+	
+	@Query(value = "SELECT id,name,price,unit,stock,rating,buy,tbl_category_id FROM tbl_product", nativeQuery = true)
+	List<Product> fillAllProduct ();
+	
 	@Query(value = "SELECT * FROM tbl_product WHERE tbl_category_id =?1", nativeQuery = true)
 	List<Product> fillAllProductByIdCat (int id_cat);
 	
