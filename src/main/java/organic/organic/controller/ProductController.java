@@ -52,29 +52,16 @@ public class ProductController {
 	@GetMapping("/categories/{id}")
 	public @ResponseBody List<Product> fillAllProductByIdCat(@PathVariable int id) {
 		List<Product> listProduct = new ArrayList<>();
-
-		int parent_id = -1;
-		try {
-			parent_id = productService.fillIdParent(id);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		// get parent_id by id_cat
-		System.out.println(parent_id);
-		if (parent_id == 0) {
+		if (id == 1) {
 			// gat all
 			listProduct = productService.findAll();
 		} else {
-			// get id_cat thoi
-			if (parent_id == -1) {
-				listProduct = productService.fillAllProductByIdCat(id);
-			} else {
-				List<Integer> listIdCat = productService.fillIdByParentID(parent_id);
-				for (Integer i : listIdCat) {
-					listProduct.addAll(productService.fillAllProductByIdCat(id));
-				}
+			List<Integer> listIdCat = productService.fillIdByParentID(id);
+			for (Integer i : listIdCat) {
+				
+				listProduct.addAll(productService.fillAllProductByIdCat(i));
+				
 			}
-
 		}
 		return listProduct;
 	}
