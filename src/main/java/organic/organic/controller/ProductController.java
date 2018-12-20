@@ -56,7 +56,8 @@ public class ProductController {
 			// gat all
 			listProduct = productService.findAll();
 		} else {
-			List<Integer> listIdCat = productService.fillIdByParentID(id);
+			listProduct = productService.fillAllProductByIdCat(id);
+			List<Integer> listIdCat = productService.fillIdByParentID(id);		
 			for (Integer i : listIdCat) {
 				
 				listProduct.addAll(productService.fillAllProductByIdCat(i));
