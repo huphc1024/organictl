@@ -40,7 +40,16 @@ public class ProductController {
 	@PutMapping("/products/{id}")
 	public @ResponseBody String update(@RequestBody Product product, @PathVariable int id) {
 		product.setId(id);
-		return productService.update(product);
+		String name = product.getName();
+		float price = product.getPrice();
+		String unit = product.getUnit();
+		int stock = product.getStock();
+		int rating = product.getRating();
+		int buy = product.getBuy();
+		int tbl_category_id = product.getTbl_category_id();
+		String sku = product.getSku();
+		Product products = new Product(id, name, price, unit, stock, rating, buy, tbl_category_id, sku);
+		return productService.update(products);
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
@@ -57,11 +66,11 @@ public class ProductController {
 			listProduct = productService.findAll();
 		} else {
 			listProduct = productService.fillAllProductByIdCat(id);
-			List<Integer> listIdCat = productService.fillIdByParentID(id);		
+			List<Integer> listIdCat = productService.fillIdByParentID(id);
 			for (Integer i : listIdCat) {
-				
+
 				listProduct.addAll(productService.fillAllProductByIdCat(i));
-				
+
 			}
 		}
 		return listProduct;
