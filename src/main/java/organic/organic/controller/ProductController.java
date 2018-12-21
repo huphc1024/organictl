@@ -42,6 +42,7 @@ public class ProductController {
 		System.out.println(product.getName());
 		product.setId(id);
 		String name = product.getName();
+		System.out.println(name);
 		float price = product.getPrice();
 		String unit = product.getUnit();
 		int stock = product.getStock();
