@@ -37,7 +37,7 @@ public class ProductController {
 	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
-	@PutMapping("/products/{id}")
+	@PutMapping(value="/products/{id}" , produces="application/x-www-form-urlencode;charset=UTF-8")
 	public @ResponseBody String update(@RequestBody Product product, @PathVariable int id) {
 		System.out.println(product.getName());
 		product.setId(id);
