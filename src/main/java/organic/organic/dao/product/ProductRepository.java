@@ -22,4 +22,6 @@ public interface ProductRepository  extends CrudRepository<Product, Integer> {
 	
 	@Query(value = "SELECT c.id FROM tbl_category c where c.parent_id = ?1", nativeQuery = true)
 	List<Integer> fillIdByParentID (int id_cat);
+	
+	
 }
