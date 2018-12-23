@@ -38,7 +38,6 @@ public class ProductController {
 	/* ---------------- UPDATE PRODUCT ------------------------ */
 	@PutMapping(value="/products/{id}" , produces="application/x-www-form-urlencode;charset=UTF-8")
 	public @ResponseBody String update(@RequestBody Product product, @PathVariable int id) {
-		System.out.println(product.getName());
 		product.setId(id);
 		String name = product.getName();
 		System.out.println(name);
@@ -49,7 +48,7 @@ public class ProductController {
 		int buy = product.getBuy();
 		int tbl_category_id = product.getTbl_category_id();
 		String sku = product.getSku();
-		Product products = new Product(id, name, price, unit, stock, rating, buy, tbl_category_id, sku,"");
+		Product products = new Product(id, name, price, unit, stock, rating, buy, tbl_category_id, sku);
 		return productService.update(products);
 	}
 
