@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.product.ProductService;
@@ -26,7 +25,7 @@ public class ProductController {
 	/* ---------------- GET PRODUCT BY ID ------------------------ */
 	@GetMapping("/products/{id}")
 	public @ResponseBody Product findById(@PathVariable int id) {
-		return productService.findById(id);
+		return productService.findByIdProduct(id);
 	}
 
 	/* ---------------- CREATE NEW PRODUCT ------------------------ */
@@ -50,7 +49,7 @@ public class ProductController {
 		int buy = product.getBuy();
 		int tbl_category_id = product.getTbl_category_id();
 		String sku = product.getSku();
-		Product products = new Product(id, name, price, unit, stock, rating, buy, tbl_category_id, sku);
+		Product products = new Product(id, name, price, unit, stock, rating, buy, tbl_category_id, sku,"");
 		return productService.update(products);
 	}
 

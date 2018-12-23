@@ -31,6 +31,10 @@ public class Product {
     private int tbl_category_id;
     @Column(name = "sku")
     private String sku;
+    
+    @Column(name = "sname")
+    private String sname;
+    
 	
     public Product() {
 		super();
@@ -107,8 +111,17 @@ public class Product {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
+	
+	public String getSname() {
+		return sname;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
 	public Product(int id, String name, float price, String unit, int stock, int rating, int buy, int tbl_category_id,
-			String sku) {
+			String sku,String sname) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -119,6 +132,7 @@ public class Product {
 		this.buy = buy;
 		this.tbl_category_id = tbl_category_id;
 		this.sku = sku;
+		this.sname = sname;
 	/*	this.shops = shops;*/
 	}
 	

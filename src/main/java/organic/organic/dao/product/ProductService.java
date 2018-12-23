@@ -16,8 +16,14 @@ public class ProductService {
 		return (List<Product>) productRepository.fillAllProduct();
 	}
 
-	public Product findById(int id) {
+	/*public Product findById(int id) {
 		Product product = productRepository.findById(id).orElse(null);
+		return product;
+	}*/
+	
+	
+	public Product findByIdProduct(int id) {
+		Product product = productRepository.findByIdProduct(id);
 		return product;
 	}
 
