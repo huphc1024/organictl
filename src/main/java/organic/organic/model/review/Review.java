@@ -27,9 +27,6 @@ public class Review {
 	@Column(name = "remail")
 	private String remail;
 
-	
-	
-	
 
 	public String getCreated_at() {
 		return created_at;

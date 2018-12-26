@@ -24,7 +24,7 @@ public class WishlistService {
 	public String create(Wishlist wishlist) {
 		String mess = "";
 		try {
-			wishlistRepository.addWishProduct(wishlist);
+			wishlistRepository.save(wishlist);
 
 			mess = "OK";
 		} catch (Exception e) {
