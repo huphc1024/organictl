@@ -22,13 +22,22 @@ public class Review {
 	private int rproduct;
 	@Column(name = "ruser")
 	private int ruser;
-	
+	@Column(name = "created_at")
+	private String created_at;
 	@Column(name = "remail")
 	private String remail;
 
 	
 	
 	
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
 
 	public String getRemail() {
 		return remail;
@@ -78,13 +87,14 @@ public class Review {
 		this.ruser = ruser;
 	}
 
-	public Review(int id, String comment, int rating, int rproduct, int ruser, String remail) {
+	public Review(int id, String comment, int rating, int rproduct, int ruser, String created_at, String remail) {
 		super();
 		this.id = id;
 		this.comment = comment;
 		this.rating = rating;
 		this.rproduct = rproduct;
 		this.ruser = ruser;
+		this.created_at = created_at;
 		this.remail = remail;
 	}
 
