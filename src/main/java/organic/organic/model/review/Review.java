@@ -22,6 +22,21 @@ public class Review {
 	private int rproduct;
 	@Column(name = "ruser")
 	private int ruser;
+	
+	@Column(name = "remail")
+	private String remail;
+
+	
+	
+	
+
+	public String getRemail() {
+		return remail;
+	}
+
+	public void setRemail(String remail) {
+		this.remail = remail;
+	}
 
 	public int getId() {
 		return id;
@@ -63,13 +78,14 @@ public class Review {
 		this.ruser = ruser;
 	}
 
-	public Review(int id, String comment, int rating, int rproduct, int ruser) {
+	public Review(int id, String comment, int rating, int rproduct, int ruser, String remail) {
 		super();
 		this.id = id;
 		this.comment = comment;
 		this.rating = rating;
 		this.rproduct = rproduct;
 		this.ruser = ruser;
+		this.remail = remail;
 	}
 
 	public Review() {
