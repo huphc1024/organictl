@@ -30,8 +30,8 @@ public class WishlistController {
 
 	/* ---------------- CREATE NEW ------------------------ */
 	@PostMapping("/wishlists")
-	public @ResponseBody String create(@RequestBody int id) {
-		return wishlistService.create(id);
+	public @ResponseBody String create(@RequestBody Wishlist wishlist) {
+		return wishlistService.create(wishlist);
 	}
 
 	/* ---------------- DELETE ------------------------ */

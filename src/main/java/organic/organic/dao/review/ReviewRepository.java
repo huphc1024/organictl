@@ -19,4 +19,8 @@ public interface ReviewRepository  extends CrudRepository<Review, Integer> {
 	@Query(value = "SELECT r.id, r.comment, r.rating , r.tbl_product_id as rproduct ,r.created_at, r.tbl_user_id as ruser FROM reviews r inner join tbl_product p on p.id = r.tbl_product_id inner join tbl_user u on u.id = r.tbl_user_id where r.tbl_user_id =?1", nativeQuery = true)
 	List<Review> findByIdUsertReview(int id);
 	
+	
+	@Query(value = "INSERT INTO reviews(comment,rating ,remail) VALUES(?3)", nativeQuery = true)
+	List<Review> addComment(Review review);
+	
 }

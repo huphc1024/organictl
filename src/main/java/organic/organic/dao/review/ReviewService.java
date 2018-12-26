@@ -29,7 +29,7 @@ public class ReviewService {
 	public String create(Review review) {
 		String mess = "";
 		try {
-			reviewRepository.save(review);
+			reviewRepository.addComment(review);
 
 			mess = "OK";
 		} catch (Exception e) {
