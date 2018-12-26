@@ -22,7 +22,7 @@ public class WishlistController {
 		return wishlistService.findAll();
 	}
 
-	/* ---------------- GET BY ID ------------------------ */
+	/* ---------------- GET BY ID USER ------------------------ */
 	@GetMapping("/wishlists-users/{id}")
 	public @ResponseBody List<Wishlist> findById(@PathVariable int id) {
 		return wishlistService.findByIdUserWishlist(id);
@@ -30,16 +30,12 @@ public class WishlistController {
 
 	/* ---------------- CREATE NEW ------------------------ */
 	@PostMapping("/wishlists")
-	public @ResponseBody String create(@RequestBody Wishlist wishlist) {
-		return wishlistService.create(wishlist);
+	public @ResponseBody String create(@RequestBody int id) {
+		return wishlistService.create(id);
 	}
 
-	/* ---------------- UPDATE ------------------------ */
-	@PutMapping("/wishlists/{id}")
-	public @ResponseBody String update(@RequestBody Wishlist wishlist, @PathVariable int id) {
-		wishlist.setId(id);
-		return wishlistService.update(wishlist);
-	}
+	/* ---------------- DELETE ------------------------ */
+
 
 	@DeleteMapping("/wishlists/{id}")
 	public @ResponseBody String delete(@PathVariable int id) {

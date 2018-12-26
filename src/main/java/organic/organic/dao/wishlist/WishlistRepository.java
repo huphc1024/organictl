@@ -16,5 +16,7 @@ public interface WishlistRepository  extends CrudRepository<Wishlist, Integer> {
 	@Query(value = "SELECT * FROM wishlists where user_id =?1", nativeQuery = true)
 	List<Wishlist> findByIdUserWishlist(int id);
 	
+	@Query(value = "INSERT INTO wishlists(product_id) VALUE(?1)", nativeQuery = true)
+	List<Wishlist> addWishProduct(int id);
 	
 }

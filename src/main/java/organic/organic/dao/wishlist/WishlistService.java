@@ -21,10 +21,10 @@ public class WishlistService {
 		return wishlist;
 	}
 
-	public String create(Wishlist wishlist) {
+	public String create(int id) {
 		String mess = "";
 		try {
-			wishlistRepository.save(wishlist);
+			wishlistRepository.addWishProduct(id);
 
 			mess = "OK";
 		} catch (Exception e) {
