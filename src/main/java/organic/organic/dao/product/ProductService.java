@@ -16,10 +16,10 @@ public class ProductService {
 		return (List<Product>) productRepository.fillAllProduct();
 	}
 
-	/*public Product findById(int id) {
-		Product product = productRepository.findById(id).orElse(null);
+	public Product findProductDeal() {
+		Product product = productRepository.findProductDeal();
 		return product;
-	}*/
+	}
 	
 	
 	public Product findByIdProduct(int id) {

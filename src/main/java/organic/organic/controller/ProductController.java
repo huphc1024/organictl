@@ -34,6 +34,13 @@ public class ProductController {
 
 		return productService.create(product);
 	}
+	
+	/*-------------------PRODUCT DEAL--------------*/
+	@GetMapping("/productdeal")
+	public @ResponseBody Product productDeal() {
+
+		return productService.findProductDeal();
+	}
 
 	/* ---------------- UPDATE PRODUCT ------------------------ */
 	@PutMapping(value="/products/{id}" , produces="application/x-www-form-urlencode;charset=UTF-8")
