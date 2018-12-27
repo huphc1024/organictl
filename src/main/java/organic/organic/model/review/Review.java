@@ -25,9 +25,8 @@ public class Review {
 	private String comment;
 	@Column(name = "rating")
 	private int rating;
-	@ManyToOne
-	@JoinColumn(name = "tbl_product_id")
-	private Product tbl_product_id;
+	@Column(name = "tbl_product_id")
+	private int tbl_product_id;
 	@Column(name = "remail")
 	private String remail;
 	@Column(name = "created_at")
@@ -67,7 +66,7 @@ public class Review {
 
 	
 
-	public Review(int id, String comment, int rating, Product tbl_product_id, String remail, String created_at) {
+	public Review(int id, String comment, int rating, int tbl_product_id, String remail, String created_at) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -85,11 +84,11 @@ public class Review {
 		this.remail = remail;
 	}
 
-	public Product getTbl_product_id() {
+	public int getTbl_product_id() {
 		return tbl_product_id;
 	}
 
-	public void setTbl_product_id(Product tbl_product_id) {
+	public void setTbl_product_id(int tbl_product_id) {
 		this.tbl_product_id = tbl_product_id;
 	}
 
