@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import organic.organic.dao.review.ReviewService;
 import organic.organic.model.review.Review;
 
-//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Controller
 @RequestMapping("/api")
 public class ReviewController {
