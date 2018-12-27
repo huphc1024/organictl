@@ -13,7 +13,7 @@ public class ReviewService {
 	ReviewRepository reviewRepository;
 
 	public List<Review> findAll() {
-		return (List<Review>) reviewRepository.fillAllReview();
+		return (List<Review>) reviewRepository.findAll();
 	}
 
 	public List<Review> findByIdProductReview(int id) {
@@ -29,7 +29,7 @@ public class ReviewService {
 	public String create(Review review) {
 		String mess = "";
 		try {
-			reviewRepository.addComment(review);
+			reviewRepository.save(review);
 
 			mess = "OK";
 		} catch (Exception e) {
